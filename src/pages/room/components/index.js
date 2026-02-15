@@ -1,0 +1,7 @@
+export { BookingForm } from './booking-form/booking-form'
+export { DatePicker } from './booking-form/date-picker'
+export { GuestsCounter } from './booking-form/guests-counter'
+export { RoomGallery } from './room-gallery'
+export { RoomInfo } from './room-info'
+export { BookedDates } from './booked-dates'
+export { default as RoomEditForm } from '../room-edit-form'

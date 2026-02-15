@@ -2,7 +2,7 @@
   "name": "hotel-app",
   "version": "1.0.0",
   "description": "hotel booking app",
-  "type":"module",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js"
@@ -20,6 +20,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.0.0",

@@ -7,24 +7,82 @@ export const editRoom = async (roomId, updatedRoom) => {
 	return newRoom
 }
 
-// booking
+export const getRooms = async (page = 1, limit = 12, search = '', filters = {}) => {
+	const query = {}
 
-// get list pagination search
-export const getRooms = async (page = 1, limit = 9, search = '') => {
+	if (search) {
+		query.title = { $regex: search, $options: 'i' }
+	}
+
+	if (filters.roomType) {
+		query.roomType = filters.roomType
+	}
+
+	if (filters.minPrice || filters.maxPrice) {
+		query.price = {}
+		if (filters.minPrice) query.price.$gte = Number(filters.minPrice)
+		if (filters.maxPrice) query.price.$lte = Number(filters.maxPrice)
+	}
+
+	if (filters.guests) {
+		query.maxGuests = { $gte: Number(filters.guests) }
+	}
+
 	const [rooms, total] = await Promise.all([
-		Rooms.find({ title: { $regex: search, $options: 'i' } })
+		Rooms.find(query)
 			.limit(limit)
 			.skip((page - 1) * limit)
-			.sort({ cost: 1 }),
-		Rooms.countDocuments({ title: { $regex: search, $options: 'i' } }),
+			.sort({ price: 1 }),
+		Rooms.countDocuments(query),
 	])
+
 	return {
 		rooms,
 		lastPage: Math.ceil(total / limit),
+		total,
+		page,
+		limit,
 	}
 }
 
-// get room
 export const getRoom = (roomId) => {
 	return Rooms.findById(roomId)
+}
+
+export const getRoomTypes = async () => {
+	try {
+		const roomTypes = await Rooms.aggregate([
+			{
+				$group: {
+					_id: '$roomType',
+					title: { $first: '$roomType' },
+					description: { $first: '$description' },
+					minPrice: { $min: '$price' },
+					maxPrice: { $max: '$price' },
+					maxGuests: { $max: '$maxGuests' },
+					images: { $first: '$images' },
+					roomCount: { $sum: 1 },
+				},
+			},
+			{
+				$project: {
+					type: '$_id',
+					title: 1,
+					description: 1,
+					price: '$minPrice',
+					maxGuests: 1,
+					images: 1,
+					roomCount: 1,
+					priceRange: {
+						min: '$minPrice',
+						max: '$maxPrice',
+					},
+				},
+			},
+		])
+
+		return roomTypes
+	} catch (error) {
+		throw new Error('Ошибка при получении типов номеров')
+	}
 }

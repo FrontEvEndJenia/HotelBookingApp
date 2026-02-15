@@ -4,6 +4,7 @@ export const mapRoom = (room) => {
 		title: room.title,
 		roomNumber: room.roomNumber,
 		roomType: room.roomType,
+		maxGuests: room.maxGuests,
 		description: room.description,
 		images: room.images,
 		price: room.price,

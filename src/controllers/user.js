@@ -48,7 +48,7 @@ export const updateUserRole = async (userId, newRoleId) => {
 		{ returnDocument: 'after' },
 	)
 }
-////////////////////////???????
+
 export const deleteUser = async (id) => {
 	try {
 		await User.findByIdAndDelete(id)

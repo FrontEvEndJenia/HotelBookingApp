@@ -1,30 +1,44 @@
 {
-  "name": "hotel-app",
-  "version": "1.0.0",
-  "description": "hotel booking app",
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
-  "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FrontEvEndJenia/HotelBookingApp.git"
-  },
-  "author": "Evgeniy Sych",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FrontEvEndJenia/HotelBookingApp/issues"
-  },
-  "homepage": "https://github.com/FrontEvEndJenia/HotelBookingApp#readme",
   "dependencies": {
-    "bcrypt": "^6.0.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^9.0.0",
-    "nodemon": "^3.1.11",
-    "validator": "^13.15.23"
+    "@hookform/resolvers": "^5.2.2",
+    "axios": "^1.7.9",
+    "codellama": "^1.0.204",
+    "lucide-react": "^0.358.0",
+    "ollama": "^0.6.3",
+    "pull": "^2.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.69.0",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.10.1",
+    "react-router-dom": "^7.6.0",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
+    "yup": "^1.7.1",
+    "zustand": "^5.0.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.2.0"
   }
 }

@@ -1,2 +1,3 @@
-# HotelBookingApp
-Приложение для бронирования отелей
+# React + Vite
+
+Simple Hotel Application
